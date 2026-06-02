@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0a0015;
+  --color-surface: #120025;
+  --color-primary: #f72585;
+  --color-accent: #7209b7;
+  --color-text: #e0aaff;
+  --color-muted: #3a0068;
+
+  --font-heading: "Orbitron", sans-serif;
+  --font-body: "Rajdhani", sans-serif;
+
+  --animate-neon-pulse: neon-pulse 2s ease-in-out infinite alternate;
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-grid-scroll: grid-scroll 20s linear infinite;
+  --animate-glitch: glitch 1s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes neon-pulse {
+    from { filter: drop-shadow(0 0 2px var(--color-primary)) drop-shadow(0 0 5px var(--color-primary)); }
+    to { filter: drop-shadow(0 0 5px var(--color-primary)) drop-shadow(0 0 15px var(--color-primary)); }
+  }
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  @keyframes grid-scroll {
+    0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+    100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+  }
+
+  @keyframes glitch {
+    0% { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+    20% { clip-path: inset(92% 0 1% 0); transform: translate(1px, -3px); }
+    40% { clip-path: inset(43% 0 1% 0); transform: translate(-1px, 2px); }
+    60% { clip-path: inset(25% 0 58% 0); transform: translate(3px, 1px); }
+    80% { clip-path: inset(54% 0 7% 0); transform: translate(-2px, -3px); }
+    100% { clip-path: inset(58% 0 43% 0); transform: translate(2px, 1px); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text font-body overflow-x-hidden;
+  }
+
+  h1, h2, h3 {
+    @apply font-heading uppercase tracking-widest;
+  }
+}
+
+@layer utilities {
+  .neon-text-primary {
+    text-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary);
+  }
+  .neon-text-accent {
+    text-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent);
+  }
+  .neon-border-primary {
+    box-shadow: 0 0 10px var(--color-primary), inset 0 0 5px var(--color-primary);
+  }
+}
